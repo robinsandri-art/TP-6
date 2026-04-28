@@ -1,0 +1,96 @@
+Comme le sujet interdit de modifier Cheminee, on crée une nouvelle classe qui sert d’intermédiaire : AdaptateurCheminee.
+
+
+@startuml
+
+interface Appareil {
+    + allumer()
+    + eteindre()
+}
+
+class Telecommande {
+    - appareils : Appareil[]
+    - nbAppareils : int
+    + ajouterAppareil(a : Appareil)
+    + allumer(numero : int)
+    + eteindre(numero : int)
+    + getNombre() : int
+}
+
+class Lampe {
+    + allumer()
+    + eteindre()
+}
+
+class Hifi {
+    - son : int
+    + allumer()
+    + eteindre()
+}
+
+class Cheminee {
+    - intensite : int
+    + Cheminee()
+    + changerIntensite(i : int)
+    + getLumiere() : int
+    + toString() : String
+}
+
+class AdaptateurCheminee {
+    - cheminee : Cheminee
+    + AdaptateurCheminee(cheminee : Cheminee)
+    + allumer()
+    + eteindre()
+    + toString() : String
+}
+
+Appareil <|.. Lampe
+Appareil <|.. Hifi
+Appareil <|.. AdaptateurCheminee
+
+Telecommande "1" o-- "0..*" Appareil : manipule
+
+AdaptateurCheminee --> Cheminee : adapte
+
+@enduml
+
+
+
+
+@startuml
+
+interface Appareil {
+    + allumer()
+    + eteindre()
+}
+
+class Telecommande {
+    - appareils : Appareil[]
+    - nbAppareils : int
+    + ajouterAppareil(a : Appareil)
+    + allumer(i : int)
+    + eteindre(i : int)
+    + getNombre() : int
+}
+
+class AdaptateurThermostat {
+    - thermostat : Thermostat
+    + AdaptateurThermostat(thermostat : Thermostat)
+    + allumer()
+    + eteindre()
+    + toString() : String
+}
+
+class Thermostat {
+    + Thermostat()
+    + monterTemperature()
+    + baisserTemperature()
+}
+
+Appareil <|.. AdaptateurThermostat
+
+Telecommande "1" o-- "0..*" Appareil : manipule
+
+AdaptateurThermostat --> Thermostat : adapte
+
+@enduml
