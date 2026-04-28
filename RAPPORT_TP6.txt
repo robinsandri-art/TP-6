@@ -94,3 +94,6 @@ Telecommande "1" o-- "0..*" Appareil : manipule
 AdaptateurThermostat --> Thermostat : adapte
 
 @enduml
+
+
+Pour intégrer Thermostat sans modifier son code, j’utilise un adaptateur AdaptateurThermostat. Cette classe implémente Appareil et contient un objet Thermostat.
